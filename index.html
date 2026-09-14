@@ -1,99 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auto OS - Full HUD System</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto OS - Full System</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="hero-bg"></div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
 
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<div class="hero-bg"></div>
-<div class="scanlines"></div>
-<div class="vignette"></div>
-
-<!-- Right Side Gamestrip Drawer -->
-<div class="gamestrip-trigger" id="gsTrigger" title="Arcade Strip">SYS</div>
-<div class="gamestrip-drawer hidden" id="gsDrawer">
-  <div class="gs-header"><span>ARCADE STRIP</span><button id="gsClose" style="background:none;border:none;color:var(--neon-red);font-family:Syncopate;">X</button></div>
- <div class="gs-body">
-   <h3>TURBO CLICKER</h3>
- <div style="font-size:0.75rem;color:var(--neon-blue);margin-bottom:10px;">HIGH SCORE: <span id="highScoreVal">0</span></div>
-    <div style="font-size:0.8rem;color:#aaa;margin-bottom:5px;">TIME LEFT: <span id="timerVal" style="color:var(--neon-red);">15</span>s</div>
- <div id="turboCount" style="font-size:2rem;color:var(--neon-red);font-family:Syncopate;margin:10px 0;">0 RPM</div>
-  <button class="flash-btn" id="revArcadeBtn">JAM THROTTLE</button>
-<div style="margin-top:20px;border-top:1px solid rgba(255,255,255,0.1);padding-top:15px;">
-  <h3 style="font-size:0.9rem;">TELEMETRY QUICK-CHECK</h3>
- <p style="font-family:monospace;font-size:0.8rem;color:var(--neon-blue);" id="quickPsi">BOOST: 14.0 PSI</p>
-    </div>
-  </div>
-</div>
-
-<main class="boot-screen" id="bootScreen">
-  <div class="rpm-gauge">
-    <div class="needle" id="needle"></div>
-    <div class="center-pin"></div>
-  </div>
-  <div class="boot-text">
-    <h2 id="bootStatus" class="glitch-text">ECU FLASHING...</h2>
-    <div class="progress-container">
-<div class="progress-bar" id="progressBar"></div>
-    </div>
-  </div>
-</main>
-
-<main class="hero hidden" id="ignitionScreen">
-  <div class="container">
-    <h1 class="title glitch" data-text="WELCOME TO THE WORLD OF HORSEPOWER">welcome to the world of horsepower</h1>
-    <p class="subtitle type-writer" id="typeWriter"></p>
-    <button class="ignition-btn" id="startEngineBtn">IGNITION <span class="blink">_</span></button>
-  </div>
-</main>
-
-<main class="desktop-environment hidden" id="desktopScreen">
-  <nav class="top-bar">
-    <div class="bar-left">
-      <span class="os-logo">AUTO_OS <span class="version">v1.3</span></span>
-   </div>
- <div class="bar-center telemetry">
-      <div class="stat"><span class="label">CPU</span> <span class="value">BOOST <span id="topBarBoost">14</span>psi</span></div>
-      <div class="stat"><span class="label">RAM</span> <span class="value">TEMP 85°C</span></div>
-  </div>
-  <div class="bar-right">
-     <span class="network status-icon">ONLINE</span>
-      <span class="battery status-icon">ALT 14.2V</span>
-    </div>
-  </nav>
-
-  <div class="desktop-workspace">
-    <div class="app-grid">
-<button class="app-icon" data-name="Engine Control"><div class="icon-shape settings"></div><span>Settings</span></button>
-   <button class="app-icon" data-name="Telemetry"><div class="icon-shape telemetry-icon"></div><span>Monitor</span></button>
-      <button class="app-icon" data-name="Nav System"><div class="icon-shape nav"></div><span>Navigation</span></button>
-    <button class="app-icon" data-name="Media Deck"><div class="icon-shape media"></div><span>Media</span></button>
-   <button class="app-icon" data-name="Garage"><div class="icon-shape files"></div><span>Files</span></button>
-        <button class="app-icon" data-name="Calendar"><div class="icon-shape calendar-icon"></div><span>Calendar</span></button>
-  <button class="app-icon" data-name="Console"><div class="icon-shape console-icon"></div><span>Console</span></button>
-    </div>
-
-    <div class="widget-container">
-<div class="chronometer">
-  <div class="ring outer-ring"></div>
-      <div class="inner-ring"></div>
- <div class="time-display">
-        <div class="date" id="dateDisplay">--</div>
-    <div class="time" id="timeDisplay"><span id="hours">00</span><span class="colon">:</span><span id="minutes">00</span></div>
-          <div class="seconds-container"><span id="seconds">00</span> <span id="ampm">AM</span></div>
-   </div>
+  <div class="gamestrip-trigger" id="gsTrigger">SYS</div>
+  <div class="gamestrip-drawer hidden" id="gsDrawer">
+    <div class="gs-header"><span>ARCADE STRIP</span><button id="gsClose" style="background:none;border:none;color:var(--neon-red);font-family:Syncopate;cursor:none;">X</button></div>
+    <div class="gs-body">
+      <h3>TURBO CLICKER</h3>
+      <div style="font-size:0.75rem;color:var(--neon-blue);margin-bottom:10px;">HIGH SCORE: <span id="highScoreVal">0</span></div>
+      <div style="font-size:0.8rem;color:#aaa;margin-bottom:5px;">TIME LEFT: <span id="timerVal" style="color:var(--neon-red);">15</span>s</div>
+      <div id="turboCount" style="font-size:2rem;color:var(--neon-red);font-family:Syncopate;margin:10px 0;">0 RPM</div>
+      <button class="flash-btn arcade-boost-btn" id="revArcadeBtn">JAM THROTTLE</button>
+      <div style="margin-top:20px;border-top:1px solid rgba(255,255,255,0.1);padding-top:15px;">
+        <h3 style="font-size:0.9rem;">TELEMETRY QUICK-CHECK</h3>
+        <p style="font-family:monospace;font-size:0.8rem;color:var(--neon-blue);" id="quickPsi">BOOST: 14.0 PSI</p>
       </div>
     </div>
   </div>
-</main>
 
-<script src="script.js"></script>
+  <main class="boot-screen" id="bootScreen">
+    <div class="rpm-gauge"><div class="needle" id="needle"></div><div class="center-pin"></div></div>
+    <div class="boot-text">
+      <h2 id="bootStatus" class="glitch-text">ECU FLASHING...</h2>
+      <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+  </main>
+
+  <main class="hero hidden" id="ignitionScreen">
+    <div class="container">
+      <h1 class="title glitch" data-text="WELCOME TO THE WORLD OF HORSEPOWER">welcome to the world of horsepower</h1>
+      <p class="subtitle type-writer" id="typeWriter"></p>
+      <button class="ignition-btn compact-ignition" id="startEngineBtn">IGNITION <span class="blink">_</span></button>
+    </div>
+  </main>
+
+  <main class="desktop-environment hidden" id="desktopScreen">
+    <nav class="top-bar">
+      <div class="bar-left"><span class="os-logo">AUTO_OS <span class="version">v1.3</span></span></div>
+      <div class="bar-center telemetry">
+        <div class="stat"><span class="label">CPU</span> <span class="value">BOOST <span id="topBarBoost">14</span>psi</span></div>
+        <div class="stat"><span class="label">RAM</span> <span class="value">TEMP 85°C</span></div>
+      </div>
+      <div class="bar-right">
+        <span class="network status-icon">ONLINE</span>
+        <span class="battery status-icon">ALT 14.2V</span>
+      </div>
+    </nav>
+
+    <div class="desktop-workspace">
+      <div class="app-grid">
+        <button class="app-icon" data-name="Engine Control"><div class="icon-shape settings"></div><span>Settings</span></button>
+        <button class="app-icon" data-name="Telemetry"><div class="icon-shape telemetry-icon"></div><span>Monitor</span></button>
+        <button class="app-icon" data-name="Nav System"><div class="icon-shape nav"></div><span>Navigation</span></button>
+        <button class="app-icon" data-name="Media Deck"><div class="icon-shape media"></div><span>Media</span></button>
+        <button class="app-icon" data-name="Garage"><div class="icon-shape files"></div><span>Files</span></button>
+        <button class="app-icon" data-name="Calendar"><div class="icon-shape calendar-icon"></div><span>Calendar</span></button>
+        <button class="app-icon" data-name="Console"><div class="icon-shape console-icon"></div><span>Console</span></button>
+      </div>
+
+      <div class="widget-container">
+        <div class="chronometer">
+          <div class="ring outer-ring"></div><div class="ring inner-ring"></div>
+          <div class="time-display">
+            <div class="date" id="dateDisplay">--</div>
+            <div class="time" id="timeDisplay"><span id="hours">00</span><span class="colon">:</span><span id="minutes">00</span></div>
+            <div class="seconds-container"><span id="seconds">00</span> <span id="ampm">AM</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
