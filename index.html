@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TurboOS - Full System</title>
+  <title>AUTO_OS // TELEMETRY TERMINAL v1.5</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  
+
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
@@ -16,22 +16,46 @@
   <div class="scanlines"></div>
   <div class="vignette"></div>
 
-  <div class="gamestrip-trigger" id="gsTrigger">SYS</div>
+  <!-- Arcade Drawer Strip -->
+  <div class="gamestrip-trigger" id="gsTrigger">ARCADE</div>
   <div class="gamestrip-drawer hidden" id="gsDrawer">
-    <div class="gs-header"><span>ARCADE STRIP</span><button id="gsClose" style="background:none;border:none;color:var(--neon-red);font-family:Syncopate;cursor:none;">X</button></div>
+    <div class="gs-header">
+      <span>ARCADE STRIP</span>
+      <button class="win-close-btn" id="gsClose">X</button>
+    </div>
+    <div class="gs-tabs">
+      <button class="g-tab active" data-target="g-turbo">TURBO</button>
+      <button class="g-tab" data-target="g-launch">LAUNCH</button>
+      <button class="g-tab" data-target="g-shift">SHIFT</button>
+    </div>
     <div class="gs-body">
-      <h3>TURBO CLICKER</h3>
-      <div style="font-size:0.75rem;color:var(--neon-blue);margin-bottom:10px;">HIGH SCORE: <span id="highScoreVal">0</span></div>
-      <div style="font-size:0.8rem;color:#aaa;margin-bottom:5px;">TIME LEFT: <span id="timerVal" style="color:var(--neon-red);">15</span>s</div>
-      <div id="turboCount" style="font-size:2rem;color:var(--neon-red);font-family:Syncopate;margin:10px 0;">0 RPM</div>
-      <button class="flash-btn arcade-boost-btn" id="revArcadeBtn">JAM THROTTLE</button>
-      <div style="margin-top:20px;border-top:1px solid rgba(255,255,255,0.1);padding-top:15px;">
-        <h3 style="font-size:0.9rem;">TELEMETRY QUICK-CHECK</h3>
-        <p style="font-family:monospace;font-size:0.8rem;color:var(--neon-blue);" id="quickPsi">BOOST: 14.0 PSI</p>
+      <div id="g-turbo" class="g-panel">
+        <div class="stat-row"><span>HIGH SCORE</span><span id="highScoreVal">0</span></div>
+        <div class="stat-row"><span>TIME LEFT</span><span id="timerVal">15s</span></div>
+        <div id="turboCount" class="arcade-output">0 RPM</div>
+        <button class="flash-btn arcade-boost-btn" id="revArcadeBtn">JAM THROTTLE</button>
+      </div>
+
+      <div id="g-launch" class="g-panel hidden">
+        <div class="stat-row"><span>BEST REACTION</span><span id="launchBest">-- ms</span></div>
+        <div class="launch-signal" id="launchLight">WAIT FOR GREEN</div>
+        <button class="flash-btn arcade-boost-btn" id="launchBtn">ENGAGE LAUNCH</button>
+      </div>
+
+      <div id="g-shift" class="g-panel hidden">
+        <div class="stat-row"><span>REDLINE ACCURACY</span><span id="shiftScore">0%</span></div>
+        <div id="shiftRpm" class="arcade-output" style="color:var(--neon-amber);">4000 RPM</div>
+        <button class="flash-btn arcade-boost-btn amber-btn" id="shiftBtn">SNAP SHIFT</button>
+      </div>
+
+      <div class="quick-telemetry-box">
+        <h3>TELEMETRY QUICK-CHECK</h3>
+        <p id="quickPsi">BOOST: 14.0 PSI</p>
       </div>
     </div>
   </div>
 
+  <!-- Boot Sequence -->
   <main class="boot-screen" id="bootScreen">
     <div class="rpm-gauge">
       <div class="needle" id="needle"></div>
@@ -45,33 +69,30 @@
     </div>
   </main>
 
+  <!-- Ignition Screen -->
   <main class="hero hidden" id="ignitionScreen">
-    <div class="container">
+    <div class="container ignition-box">
       <h1 class="title glitch" data-text="WELCOME TO THE WORLD OF HORSEPOWER">
         welcome to the world of horsepower
       </h1>
-      <p class="subtitle type-writer" id="typeWriter"></p>
-      <button class="ignition-btn compact-ignition" id="startEngineBtn">IGNITION <span class="blink">_</span></button>
+      <p class="subtitle" id="typeWriter"></p>
+      <button class="ignition-btn compact-ignition" id="startEngineBtn">IGNITION _</button>
     </div>
   </main>
 
+  <!-- Desktop Environment -->
   <main class="desktop-environment hidden" id="desktopScreen">
     <nav class="top-bar">
-<<<<<<< HEAD
       <div class="bar-left">
-        <span class="os-logo">AUTO_OS <span class="version">v1.4</span></span>
+        <span class="os-logo">AUTO_OS <span class="version">v1.5</span></span>
       </div>
       
-=======
-      <div class="bar-left"><span class="os-logo">Turbo_OS <span class="version">v1.3</span></span></div>
->>>>>>> 294a86e958900865f2e05f348ebfb561729af6d5
       <div class="bar-center telemetry">
-        <div class="stat"><span class="label">CPU</span> <span class="value">BOOST <span id="topBarBoost">14</span>psi</span></div>
-        <div class="stat"><span class="label">RAM</span> <span class="value">TEMP 85°C</span></div>
+        <div class="stat"><span class="label">CPU</span> <span class="value">BOOST <span id="topBarBoost">14</span> PSI</span></div>
+        <div class="stat"><span class="label">BAND</span> <span class="value" id="hudBand">FM 98.3 MHz</span></div>
       </div>
       
       <div class="bar-right">
-        <span class="status-item" id="hudBand">RADIO: OFF</span>
         <span class="network status-icon">ONLINE</span>
         <span class="battery status-icon">ALT 14.2V</span>
       </div>
