@@ -7,12 +7,24 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="body">
 
+  <!-- Tactical Drone Cursor -->
   <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-ring" id="cursorRing">
+    <div class="cursor-crosshair">
+      <div class="cross-t"></div>
+      <div class="cross-b"></div>
+      <div class="cross-l"></div>
+      <div class="cross-r"></div>
+    </div>
+  </div>
 
-  <div class="hero-bg"></div>
+  <!-- 3D Telemetry Grid & Horizon -->
+  <div class="hero-bg-container">
+    <div class="horizon-glow"></div>
+    <div class="hero-bg"></div>
+  </div>
   <div class="scanlines"></div>
   <div class="vignette"></div>
 
@@ -62,7 +74,7 @@
       <div class="center-pin"></div>
     </div>
     <div class="boot-text">
-      <h2 id="bootStatus" class="glitch-text">ECU FLASHING...</h2>
+      <h2 id="bootStatus" class="glitch-text" data-text="ECU FLASHING...">ECU FLASHING...</h2>
       <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
       </div>
@@ -72,8 +84,8 @@
   <!-- Ignition Screen -->
   <main class="hero hidden" id="ignitionScreen">
     <div class="container ignition-box">
-      <h1 class="title glitch" data-text="WELCOME TO THE WORLD OF HORSEPOWER">
-        welcome to the world of horsepower
+      <h1 class="title glitch-title" data-text="WELCOME TO THE WORLD OF HORSEPOWER">
+        WELCOME TO THE WORLD OF HORSEPOWER
       </h1>
       <p class="subtitle" id="typeWriter"></p>
       <button class="ignition-btn compact-ignition" id="startEngineBtn">IGNITION _</button>
@@ -84,7 +96,7 @@
   <main class="desktop-environment hidden" id="desktopScreen">
     <nav class="top-bar">
       <div class="bar-left">
-        <span class="os-logo">AUTO_OS <span class="version">v1.5</span></span>
+        <span class="os-logo">AUTO_OS <span class="version">v1.6_STABLE</span></span>
       </div>
       
       <div class="bar-center telemetry">
